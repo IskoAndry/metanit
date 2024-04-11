@@ -1,3 +1,113 @@
-<label>Введите имя:</label>
+<!-- <input [(ngModel)]="op" />
+    <p>a = {{a}}  b = {{b}}</p>
+  <p>Результат: 
+      @switch (op) {
+        @case ("+") {
+          {{ a + b }}
+        }
+        @case ("-") {
+          {{ a - b }}
+        }
+        @case ("*") {
+          {{ a * b }}
+        }
+        @default {
+          Неизвестная операция
+        }
+      }
+    </p> -->
+
+    <!-- <ul>
+        @for (i of es; track i ){
+            <li>{{i}}</li>
+        }
+    </ul> -->
+
+<!-- <label>Введите имя:</label>
 <input [(ngModel)]="name" placeholder="name">
-<h1>Добро пожаловать {{name}}!
+<br>
+<label>Введите возраст:</label>
+<input type="text" [value]="age" />
+<p [textContent]="age"></p>
+<input value="{{text_1}}" />
+
+<p>Количество кликов {{count}}</p>
+<button (click)="increase($event)">Click</button> -->
+
+<!-- <h2>Hello from {{name}}</h2>
+<child-comp><h2>Hello fromss {{name}}</h2></child-comp> -->
+
+
+<!-- <child-comp [userName]="name" [userAge]="age"></child-comp> -->
+
+<!-- <h2>Количество кликов: {{clicks}}</h2>
+<child-comp (onChanged)="onChanged($event)"></child-comp> -->
+
+<!-- <child-comp [(userName)]="name"></child-comp>
+<div>Выбранное имя: {{name}}</div> -->
+
+<!-- <h2>Hello AppComponent</h2>
+    <input type="text" [(ngModel)]="name" />
+        <br>
+    <input type="text" [(ngModel)]="age" /> -->
+
+<!-- <h1>Добро пожаловать {{name}}!
+    <p>Имя: {{name}}</p>
+    <p>Возраст: {{age}}</p> -->
+
+<!-- <div [class.redbox]="isRed"></div>
+<div [class.redbox]="!isRed"></div>
+<input type="checkbox" [(ngModel)]="isRed" />
+
+<div [style.backgroundColor]="isRed? 'red' : 'green'"></div>
+<div [style.background-color]="!isRed ? 'red' : 'green'"></div>
+<input type="checkbox" [(ngModel)]="isRed" /> -->
+
+<!-- <div>
+    <input [(ngModel)]="age" min="1" type="number" />
+    <h2>@if(age>0 && age < 110){
+      Your age is {{age}}
+    } @else {
+      age is undefined
+    }</h2>
+</div> -->
+
+<!-- <ul>
+    @for (item of items; track item.id) {
+        <li>{{ item.name }}</li>
+    }
+ </ul> -->
+
+
+<!-- <div class="list_pay">
+    <h1> Список покупок </h1>
+        <div>
+            <p>
+                <label>Товар</label><br>
+                <input [(ngModel)]="text" />
+            </p>
+            <p>
+                <label>Цена</label><br>
+                <input type="number" [(ngModel)]="price" />
+            </p>
+            <button (click)="addItem(text, price)">Добавить</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Предмет</th>
+                    <th>Цена</th>
+                    <th>Куплено</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for (item of items; track item.purchase) {
+                <tr>
+                    <td>{{item.purchase}}</td>
+                    <td>{{item.price}}</td>
+                    <td><input type="checkbox" [(ngModel)]="item.done" /></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+</div> -->
