@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import {ChildComponent} from './child.component';
@@ -27,14 +27,32 @@ import {ChildComponent} from './child.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent  {
+     
+  @ViewChild("nameText", {static: false})
+  nameParagraph: ElementRef|undefined;
+    
+  name = "Tom";
+    
+  change() {
+      if(this.nameParagraph!==undefined){
+          console.log(this.nameParagraph.nativeElement.textContent); 
+          this.nameParagraph.nativeElement.textContent = "hell";
+      }
+  }
+  
+  // constructor(){ console.log("constructor"); }
+  // ngOnInit() { console.log("onInit"); }
+  // ngOnDestroy() { console.log("onDestroy"); }
+
+
 
   // clicks  = 0;
   //   onChanged(increased:boolean){
   //       increased?this.clicks++:this.clicks--;
   //   }
   // items = [new Item(1, "Tom"), new Item(2, "Bob"), new Item(3,"Sam")];
-  name = "Tom";
+  // name = "Tom";
   title = 'helloapp';
   // name= "";
   age = 25;
@@ -72,4 +90,6 @@ export class AppComponent {
     //         return;
     //     this.items.push(new Item(text, price));
     // }
+
+
 }

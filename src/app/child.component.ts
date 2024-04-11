@@ -1,4 +1,9 @@
-import { Input, Component, EventEmitter, Output } from "@angular/core";
+import { Input, Component, EventEmitter, Output, OnInit, SimpleChanges, DoCheck,
+    OnChanges,
+   AfterContentInit, 
+   AfterContentChecked, 
+   AfterViewChecked, 
+   AfterViewInit } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 
 
@@ -16,14 +21,36 @@ import { FormsModule } from '@angular/forms';
     <button (click)="change(false)">-</button>
 
     <input [ngModel]="userName" (ngModelChange)="onNameChange($event)" />
+
+    <p>Привет {{name}}</p>
+
+    <p>{{counter}}</p>
     `,
 
     styles: [`h2{color:navy;}`]
 })
-export class ChildComponent {
+export class ChildComponent   {
+
+    counter  = 0;
+    increment() { this.counter++; }
+    decrement() { this.counter--; }
+
+    
     name= "ChildComponent";
     @Input() userName: string = "";
     // @Input() userAge: number = 44;
+
+    // constructor(){ console.log("constructor"); }
+    // ngOnInit() { console.log("onInit"); }
+      
+    // ngOnChanges(changes: SimpleChanges) {
+    //   for (let propName in changes) {
+    //     let chng = changes[propName];
+    //     let cur  = JSON.stringify(chng.currentValue);
+    //     let prev = JSON.stringify(chng.previousValue);
+    //     console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+    //   }
+    // }
 
     @Output() userNameChange = new EventEmitter<string>();
     onNameChange(model: string){
