@@ -3,6 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import {ChildComponent} from './child.component';
 
+import {NgClass} from "@angular/common";
+import { BoldDirective} from "./bold.directive";
+
+import {NgIf} from "@angular/common";
+import {NgFor} from "@angular/common";
+import {NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
+import {WhileDirective} from "./while.directive";
+
+import {DataService} from "./data.service";
 // class Item{
 //   purchase: string;
 //   done: boolean;
@@ -23,24 +32,61 @@ import {ChildComponent} from './child.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, ChildComponent, ],
+  imports: [ WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  providers: [DataService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
 export class AppComponent  {
+
+  items: string[] = [];
+  name: string = "";
+  constructor(private dataService: DataService){}
      
-  @ViewChild("nameText", {static: false})
-  nameParagraph: ElementRef|undefined;
-    
-  name = "Tom";
-    
-  change() {
-      if(this.nameParagraph!==undefined){
-          console.log(this.nameParagraph.nativeElement.textContent); 
-          this.nameParagraph.nativeElement.textContent = "hell";
-      }
+  addItem(name: string){
+         
+      this.dataService.addData(name);
   }
-  
+  ngOnInit(){
+      this.items = this.dataService.getData();
+  }
+
+  //================================
+  // count = 4;
+
+  // items =["Tom", "Bob", "Sam", "Bill"];
+
+  // condition: boolean=true;
+     
+  //   toggle(){
+  //       this.condition=!this.condition;
+  //   }
+
+
+//===================================
+  // isVerdana = true;
+  // isSegoe = true;
+
+  // visibility: boolean = true;
+  //   // переключаем переменную
+  //   toggle(){
+  //       this.visibility=!this.visibility;
+  //   }
+     
+  // @ViewChild("nameText", {static: false})
+  // nameParagraph: ElementRef|undefined;
+    
+  // name = "Tom";
+    
+  // change() {
+  //     if(this.nameParagraph!==undefined){
+  //         console.log(this.nameParagraph.nativeElement.textContent); 
+  //         this.nameParagraph.nativeElement.textContent = "hell";
+  //     }
+  // }
+  //================================
   // constructor(){ console.log("constructor"); }
   // ngOnInit() { console.log("onInit"); }
   // ngOnDestroy() { console.log("onDestroy"); }
@@ -53,9 +99,9 @@ export class AppComponent  {
   //   }
   // items = [new Item(1, "Tom"), new Item(2, "Bob"), new Item(3,"Sam")];
   // name = "Tom";
-  title = 'helloapp';
-  // name= "";
-  age = 25;
+  // title = 'helloapp';
+  // // name= "";
+  // age = 25;
   // text_1="Hello Metanit.com";
   // num = 5;
   // age: number|undefined = undefined;

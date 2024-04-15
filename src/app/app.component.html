@@ -1,9 +1,88 @@
 
 <p>Hello METANIT.COM</p>
 
-<p #nameText>{{name}}</p>
+<div>
+    <div><input [(ngModel)]="name" />
+        <button (click)="addItem(name)">Добавить</button>
+    </div>
+    <ul>
+    @for(item of items; track $index){
+        <li>{{item}}</li>
+    }
+    </ul>
+</div>
+
+<!-- <p *ngIf="condition"> Привет мир </p>
+<p *ngIf="!condition"> Пока мир  </p>
+<button (click)="toggle()">Toggle</button>
+
+<br>
+<div *ngIf="condition; then thenBlock else elseBlock"></div>   
+ <ng-template #thenBlock>Then template</ng-template>  
+ <ng-template #elseBlock>Else template</ng-template>    
+ <button (click)="toggle()">Toggle</button>
+
+
+ <ul>
+    <li *ngFor="let item of items; let i = index">{{i+1}}.{{item}}</li>
+  </ul>
+
+  <div>
+    <p *ngFor="let item of items; let i = index">{{i+1}}.{{item}}</p>
+</div>
+
+<ng-template [ngIf]="condition">
+    <p>  Привет мир  </p>
+</ng-template>
+<ng-template [ngIf]="!condition">
+    <p> Пока мир  </p>
+</ng-template>
+
+
+<div [ngSwitch]="count">
+    <ng-template ngSwitchCase="1">{{count * 10}}</ng-template>
+    <ng-template ngSwitchCase="2">{{count * 100}}</ng-template>
+    <ng-template ngSwitchDefault>{{count * 1000}}</ng-template>
+  </div> -->
+
+  <!-- <p *while="condition">
+    Первый параграф
+  </p>
+  <p *while="!condition">
+    Второй параграф
+  </p>
+  <button (click)="toggle()">Toggle</button> -->
+<!-- <div [ngClass]="{verdanaFont:isVerdana}">
+    <h1>Hello Angular</h1>
+    <p [ngClass]="{segoePrintFont:isSegoe}">
+        Приложение Angular состоит из компонентов
+    </p>
+</div>
+
+<div [ngClass]="{invisible: visibility}">
+    <h1>Hello Angular 17</h1>
+    <p>
+        Приложение Angular состоит из компонентов
+    </p>
+</div>
+<button (click)="toggle()">Toggle</button>
+
+<div>
+    <p bold>Hello Angular</p>
+    <p>Приложение Angular состоит из компонентов</p>
+ </div>
+
+
+ <div>
+    <p bold selectedSize="28px" [defaultSize]="'14px'">Hello Angular</p>
+    <p>Приложение Angular состоит из компонентов</p>
+ </div> -->
+
+
+ 
+<!-- <p #nameText>{{name}}</p>
 <p>{{nameText.textContent}}</p>
-<button (click)="change()">Изменить</button>
+<button (click)="change()">Изменить</button> -->
 
 
  <!-- <p>{{userName.textContent}}</p>
