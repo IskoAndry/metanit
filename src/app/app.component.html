@@ -1,7 +1,37 @@
 
 <p>Hello METANIT.COM</p>
 
+<div> 
+    <p>
+        <label>Имя пользователя</label><br>
+        <input name="name" [(ngModel)]="name" />
+    </p>
+    <p>
+        <label>Возраст</label><br>
+        <input type="number" name="age" [(ngModel)]="age" />
+    </p>
+    <p>
+        <label>Место работы</label><br>
+        <select name="company" [(ngModel)]="company">
+        @for(comp of companies; track $index){
+            <option [value]="comp">
+                {{comp}}
+            </option>
+        }
+        </select>
+    </p>
+    <button (click)="addUser()">Добавить</button>
+</div>
 <div>
+<h3>Добавленные элементы</h3>
+<ul>
+@for(u of users; track $index){
+    <li>{{u.name}} ({{u.company}}) - {{u.age}}</li>
+}
+</ul>
+</div>
+
+<!-- <div>
     <div><input [(ngModel)]="name" />
         <button (click)="addItem(name)">Добавить</button>
     </div>
@@ -10,7 +40,7 @@
         <li>{{item}}</li>
     }
     </ul>
-</div>
+</div> -->
 
 <!-- <p *ngIf="condition"> Привет мир </p>
 <p *ngIf="!condition"> Пока мир  </p>

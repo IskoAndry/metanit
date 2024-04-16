@@ -12,6 +12,7 @@ import {NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
 import {WhileDirective} from "./while.directive";
 
 import {DataService} from "./data.service";
+import {LogService} from "./log.service";
 // class Item{
 //   purchase: string;
 //   done: boolean;
@@ -29,11 +30,18 @@ import {DataService} from "./data.service";
 //   constructor(public id: number, public name: string){}
 // }
 
+class User{
+  constructor(public name: string, 
+              public age: number, 
+              public company: string)
+  { }
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [ WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
-  providers: [DataService],
+  providers: [DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -41,17 +49,30 @@ import {DataService} from "./data.service";
 
 export class AppComponent  {
 
-  items: string[] = [];
   name: string = "";
-  constructor(private dataService: DataService){}
+  age: number = 18;
+  company: string = "";
+    
+  users: User[] = [];
+  companies: string[] = ["Apple", "Microsoft", "Google", "Jetbrains"];
+    
+  addUser(){
+      this.users.push(new User(this.name, this.age, this.company));
+  }
+
+
+  //======================== servis
+  // items: string[] = [];
+  // name: string = "";
+  // constructor(private dataService: DataService){}
      
-  addItem(name: string){
+  // addItem(name: string){
          
-      this.dataService.addData(name);
-  }
-  ngOnInit(){
-      this.items = this.dataService.getData();
-  }
+  //     this.dataService.addData(name);
+  // }
+  // ngOnInit(){
+  //     this.items = this.dataService.getData();
+  // }
 
   //================================
   // count = 4;
