@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel, NgForm , FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import {ChildComponent} from './child.component';
 
@@ -32,15 +32,17 @@ import {LogService} from "./log.service";
 
 class User{
   constructor(public name: string, 
-              public age: number, 
-              public company: string)
+              // public age: number, 
+              // public company: string,
+              public email: string,
+              public phone: string)
   { }
 }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  imports: [ ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
   providers: [DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -49,19 +51,93 @@ class User{
 
 export class AppComponent  {
 
-  name: string = "";
-  age: number = 18;
-  company: string = "";
-    
-  users: User[] = [];
-  companies: string[] = ["Apple", "Microsoft", "Google", "Jetbrains"];
-    
-  addUser(){
-      this.users.push(new User(this.name, this.age, this.company));
-  }
+  myForm : FormGroup;
+	constructor(){
+		this.myForm = new FormGroup({
+			
+			"userName": new FormControl("Tom", [Validators.required, this.userNameValidator]),
+			"userEmail": new FormControl("", [
+								Validators.required, 
+								Validators.email
+							]),
+			"userPhone": new FormControl()
+		});
+	}
+    submit(){
+        console.log(this.myForm);
+    }
+	// валидатор
+	userNameValidator(control: FormControl): {[s:string]:boolean}|null{
+		
+		if(control.value==="нет"){
+			return {"userName": true};
+		}
+		return null;
+	}
+  //================================
+  // name: string = "";
+  // email: string = "";
+  // phone: string = "";
+     
+  // submit(form: NgForm){
+  //   console.log(form);
+  // }
 
 
-  //======================== servis
+  // myForm : FormGroup = new FormGroup({
+			
+  //   "userName": new FormControl("Tom", Validators.required),
+  //   "userEmail": new FormControl("", [
+  //         Validators.required, 
+  //         Validators.email
+  //   ]),
+  //   "userPhone": new FormControl("", Validators.pattern("[0-9]{10}")) 
+  // });
+
+
+  // user: User = new User("", "", "");
+  //   addUser(){
+  //       console.log(this.user);
+  //   }
+
+ // user = new User("", 18, "")
+      
+  //   users: User[] = [];
+  //   companies: string[] = ["Apple", "Microsoft", "Google", "Jetbrains"];
+      
+  //   logUser(name: NgModel, age: NgModel, company: NgModel){
+  //       console.log(name);
+  //       console.log(age);
+  //       console.log(company);
+  //   }
+
+  //   onNameChange(){
+  //     if(this.user.name=="admin")
+  //         this.user.name = "Undefined";
+  // }
+
+  // newUser = new User("", 18, "Google")
+      
+  //   users: User[] = [];
+  //   companies: string[] = ["Apple", "Microsoft", "Google", "Jetbrains"];
+      
+  //   addUser(){
+  //       this.users.push({...this.newUser});
+  //   }
+
+  // name: string = "";
+  // age: number = 18;
+  // company: string = "";
+    
+  // users: User[] = [];
+  // companies: string[] = ["Apple", "Microsoft", "Google", "Jetbrains"];
+    
+  // addUser(){
+  //     this.users.push(new User(this.name, this.age, this.company));
+  // }
+
+
+  //======================== ser
   // items: string[] = [];
   // name: string = "";
   // constructor(private dataService: DataService){}

@@ -1,7 +1,144 @@
 
 <p>Hello METANIT.COM</p>
 
-<div> 
+<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+    <div>
+        <label>Имя</label><br>
+        <input name="name"   formControlName="userName" />
+
+        @if(myForm.controls["userName"].invalid && myForm.controls["userName"].touched){
+            <div class="alert">Не указано имя</div>
+        }
+    </div>
+    <div>
+        <label>Email</label><br>
+        <input name="email" formControlName="userEmail" />
+
+        @if(myForm.controls["userEmail"].invalid && myForm.controls["userEmail"].touched){
+            <div class="alert">Некорректный email</div>
+        }
+    </div>
+    <div>
+        <label>Телефон</label><br>
+        <input name="phone" formControlName="userPhone" />
+
+        @if(myForm.controls["userPhone"].invalid && myForm.controls["userPhone"].touched){
+            <div class="alert">Некорректный номер телефона</div>
+        }
+    </div>
+    <button [disabled]="myForm.invalid">Отправить </button>
+</form>
+
+<!-- <form  #myForm="ngForm" novalidate>
+    <p>
+        <label>Имя</label><br>
+        <input name="name" [(ngModel)]="name" required />
+    </p>
+    <p>
+        <label>Email</label><br>
+        <input name="email" ngModel 
+            required email />
+    </p>
+    <p>
+        <label>Телефон</label><br>
+        <input name="phone" ngModel 
+            required pattern="[0-9]{10}" />
+    </p>
+    <button [disabled]="myForm.invalid" (click)="submit(myForm)">Добавить</button>
+    <br>
+    <input type="submit" [disabled]="myForm.invalid" value="Отправить" />
+</form>
+<p>Имя: {{myForm.value.name}}</p>
+<p>Email: {{myForm.value.email}}</p>
+<p>Phone: {{myForm.value.phone}}</p> -->
+
+<!-- <div> 
+    <div>
+        <label>Имя</label><br>
+        <input name="name" [(ngModel)]="user.name" #name="ngModel" required />
+        <div [hidden]="name.valid || name.untouched" class="alert">
+          Не указано имя
+        </div>
+    </div>
+    <div>
+        <label>Email</label><br>
+        <input name="email" [(ngModel)]="user.email" #email="ngModel" 
+            required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" />
+        <div [hidden]="email.valid || email.untouched" class="alert">
+          Некорректный email
+        </div>
+    </div>
+    <div>
+        <label>Телефон</label><br>
+        <input  name="phone" [(ngModel)]="user.phone" #phone="ngModel" 
+            required pattern="[0-9]{11}" />
+        <div [hidden]="phone.valid || phone.untouched" class="alert">
+          Некорректный телефон
+        </div>
+    </div>
+    <button [disabled]="name.invalid || email.invalid || phone.invalid" 
+    (click)="addUser()">Добавить</button>
+</div> -->
+
+<!-- <div> 
+    <p>
+        <label>Имя пользователя</label><br>
+        <input name="name" [(ngModel)]="user.name" #userName="ngModel"/>
+        <input name="name" [(ngModel)]="user.name" 
+            #userName="ngModel" (change)="onNameChange()" />
+    </p>
+    <p>
+        <label>Возраст</label><br>
+        <input type="number" name="age" [(ngModel)]="user.age" #userAge="ngModel"/>
+    </p>
+    <p>
+        <label>Место работы</label><br>
+        <select name="company" [(ngModel)]="user.company" #userCompany="ngModel">
+        @for(comp of companies; track $index){
+            <option [value]="comp">
+                {{comp}}
+            </option>
+        }
+        </select>
+    </p>
+    <button (click)="logUser(userName, userAge, userCompany)">Логгировать</button>
+</div>
+<div>
+    <p>{{userName.name}} : {{userName.model}}</p>
+    <p>{{userAge.name}} : {{userAge.model}}</p>
+    <p>{{userCompany.name}} : {{userCompany.model}}</p>
+</div> -->
+<!-- <div> 
+    <p>
+        <label>Имя пользователя</label><br>
+        <input name="name" [(ngModel)]="newUser.name" />
+    </p>
+    <p>
+        <label>Возраст</label><br>
+        <input type="number" name="age" [(ngModel)]="newUser.age" />
+    </p>
+    <p>
+        <label>Место работы</label><br>
+        <select name="company" [(ngModel)]="newUser.company">
+        @for(comp of companies; track $index){
+            <option [value]="comp">
+                {{comp}}
+            </option>
+        }
+        </select>
+    </p>
+    <button (click)="addUser()">Добавить</button>
+</div>
+<div>
+<h3>Добавленные элементы</h3>
+<ul>
+@for(u of users; track $index){
+    <li>{{u.name}} ({{u.company}}) - {{u.age}}</li>
+}
+</ul>
+</div> -->
+
+<!-- <div> 
     <p>
         <label>Имя пользователя</label><br>
         <input name="name" [(ngModel)]="name" />
@@ -29,7 +166,7 @@
     <li>{{u.name}} ({{u.company}}) - {{u.age}}</li>
 }
 </ul>
-</div>
+</div> -->
 
 <!-- <div>
     <div><input [(ngModel)]="name" />
