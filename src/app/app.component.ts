@@ -13,6 +13,12 @@ import {WhileDirective} from "./while.directive";
 
 import {DataService} from "./data.service";
 import {LogService} from "./log.service";
+
+import { HttpClient, HttpClientModule} from "@angular/common/http";
+import {User} from "./user";
+import { HttpService} from "./http.service";
+ 
+
 // class Item{
 //   purchase: string;
 //   done: boolean;
@@ -30,50 +36,68 @@ import {LogService} from "./log.service";
 //   constructor(public id: number, public name: string){}
 // }
 
-class User{
-  constructor(public name: string, 
-              // public age: number, 
-              // public company: string,
-              public email: string,
-              public phone: string)
-  { }
-}
+// class User{
+//   constructor(public name: string, 
+//               // public age: number, 
+//               // public company: string,
+//               public email: string,
+//               public phone: string)
+//   { }
+// }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
-  providers: [DataService, LogService],
+  imports: [HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  providers: [HttpService, DataService, LogService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  
 })
 
 
-export class AppComponent  {
+export class AppComponent  implements OnInit{
 
-  myForm : FormGroup;
-	constructor(){
-		this.myForm = new FormGroup({
+  users: User[]=[];
+      
+  constructor(private httpService: HttpService){}
+     
+  // ngOnInit(){
+         
+  //     this.httpService.getData().subscribe({next: (data: any) => this.users=data["userList"]});
+  // }
+  ngOnInit(){
+           
+    this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
+}
+  
+     
+ 
+
+  //========================== form
+  // myForm : FormGroup;
+	// constructor(){
+	// 	this.myForm = new FormGroup({
 			
-			"userName": new FormControl("Tom", [Validators.required, this.userNameValidator]),
-			"userEmail": new FormControl("", [
-								Validators.required, 
-								Validators.email
-							]),
-			"userPhone": new FormControl()
-		});
-	}
-    submit(){
-        console.log(this.myForm);
-    }
-	// валидатор
-	userNameValidator(control: FormControl): {[s:string]:boolean}|null{
+	// 		"userName": new FormControl("Tom", [Validators.required, this.userNameValidator]),
+	// 		"userEmail": new FormControl("", [
+	// 							Validators.required, 
+	// 							Validators.email
+	// 						]),
+	// 		"userPhone": new FormControl()
+	// 	});
+	// }
+  //   submit(){
+  //       console.log(this.myForm);
+  //   }
+	// // валидатор
+	// userNameValidator(control: FormControl): {[s:string]:boolean}|null{
 		
-		if(control.value==="нет"){
-			return {"userName": true};
-		}
-		return null;
-	}
+	// 	if(control.value==="нет"){
+	// 		return {"userName": true};
+	// 	}
+	// 	return null;
+	// }
   //================================
   // name: string = "";
   // email: string = "";

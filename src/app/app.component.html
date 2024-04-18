@@ -1,7 +1,18 @@
 
 <p>Hello METANIT.COM</p>
 
-<form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+<ul>
+    @for(user of users; track $index){
+        <li>
+            <p>Имя пользователя: {{user?.name}}</p>
+            <p>Возраст пользователя: {{user?.age}}</p>
+        </li>
+
+        <li>{{user?.name}} ({{user?.age}})</li>
+}
+</ul>
+
+<!-- <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
     <div>
         <label>Имя</label><br>
         <input name="name"   formControlName="userName" />
@@ -27,7 +38,7 @@
         }
     </div>
     <button [disabled]="myForm.invalid">Отправить </button>
-</form>
+</form> -->
 
 <!-- <form  #myForm="ngForm" novalidate>
     <p>
