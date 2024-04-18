@@ -52,7 +52,7 @@ import { HttpService} from "./http.service";
   providers: [HttpService, DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  
+
 })
 
 
@@ -62,14 +62,15 @@ export class AppComponent  implements OnInit{
       
   constructor(private httpService: HttpService){}
      
-  // ngOnInit(){
-         
-  //     this.httpService.getData().subscribe({next: (data: any) => this.users=data["userList"]});
-  // }
   ngOnInit(){
+         
+      this.httpService.getData().subscribe({next: (data: any) => this.users=data["userList"]});
+      this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
+  }
+//   ngOnInit(){
            
-    this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
-}
+//     this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
+// }
   
      
  
