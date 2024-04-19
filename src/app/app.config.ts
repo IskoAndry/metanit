@@ -8,12 +8,14 @@ import {HomeComponent} from "./home.component";
 import {AboutComponent} from "./about.component";
 import {NotFoundComponent} from "./not-found.component";
 import { AppComponent } from './app.component';
-
+import {ContactComponent} from "./contact.component";
 
 const appRoutes: Routes =[
   { path: "", component: HomeComponent},
   { path: "about", component: AboutComponent},
-  { path: "contact", redirectTo: "/about", pathMatch:"full"},
+  { path: "contact", component: ContactComponent },
+  
+  // { path: "contact", redirectTo: "/about", pathMatch:"full"},
   { path: "**", redirectTo: "/" }
 ];
 

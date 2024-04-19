@@ -1,8 +1,14 @@
 
 <p>Hello METANIT.COM</p>
 
+
 <div>
-    <h1>Приложение Angular</h1>
+    <nav>
+        <a routerLink="" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Главная</a>
+        <a routerLink="/about" routerLinkActive="active">О сайте</a>
+        <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </nav>
     <router-outlet></router-outlet>
 </div>
 
