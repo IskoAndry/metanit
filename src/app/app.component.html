@@ -1,7 +1,7 @@
 
 <p>Hello METANIT.COM</p>
 
-<div>{{this.httpService.errorMessage}}</div>
+<!-- <div>{{this.httpService.errorMessage}}</div> -->
 <ul>
     @for(user of users; track $index){
         <li>
@@ -12,6 +12,21 @@
         <li>{{user?.name}} ({{user?.age}})</li>
 }
 </ul>
+
+<div>
+    <p>
+        <label>Введите первое число</label><br>
+        <input type="number" name="num1" [(ngModel)]="num1" />
+    <p>
+    <p>
+        <label>Введите второе число</label><br>
+        <input type="number" name="num2" [(ngModel)]="num2" />
+    </p>
+        <button (click)="submit()">Отправить</button>
+    </div>
+    @if(done){ 
+        <div>Сумма: {{sum}}</div> 
+    }
 
 <!-- <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
     <div>

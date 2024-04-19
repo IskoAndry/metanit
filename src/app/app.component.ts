@@ -58,15 +58,27 @@ import { HttpService} from "./http.service";
 
 export class AppComponent  implements OnInit{
 
-  users: User[]=[];
-      
+  num1: number = 0;
+  num2: number = 0;
+  sum: number | undefined;
+  done: boolean = false;
   constructor(private httpService: HttpService){}
-     
-  ngOnInit(){
-         
-      this.httpService.getData().subscribe({next: (data: any) => this.users=data["userList"]});
-      this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
+  submit(){
+      this.httpService.getSum(this.num1, this.num2).subscribe({next:(data:any) => {
+          this.sum=data.result; 
+          this.done=true;
+      }});
   }
+
+  // users: User[]=[];
+      
+  // constructor(private httpService: HttpService){}
+     
+  // ngOnInit(){
+         
+  //     this.httpService.getData().subscribe({next: (data: any) => this.users=data["userList"]});
+  //     this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
+  // }
 //   ngOnInit(){
            
 //     this.httpService.getUsers().subscribe({next:(data: User[]) => this.users=data});
