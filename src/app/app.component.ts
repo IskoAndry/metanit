@@ -18,7 +18,6 @@ import { HttpClient, HttpClientModule} from "@angular/common/http";
 import {User} from "./user";
 import { HttpService} from "./http.service";
  
-
 // class Item{
 //   purchase: string;
 //   done: boolean;
@@ -48,7 +47,7 @@ import { HttpService} from "./http.service";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  imports: [RouterOutlet, HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
   providers: [HttpService, DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -56,19 +55,19 @@ import { HttpService} from "./http.service";
 })
 
 
-export class AppComponent  implements OnInit{
+export class AppComponent  {
 
-  num1: number = 0;
-  num2: number = 0;
-  sum: number | undefined;
-  done: boolean = false;
-  constructor(private httpService: HttpService){}
-  submit(){
-      this.httpService.getSum(this.num1, this.num2).subscribe({next:(data:any) => {
-          this.sum=data.result; 
-          this.done=true;
-      }});
-  }
+  // num1: number = 0;
+  // num2: number = 0;
+  // sum: number | undefined;
+  // done: boolean = false;
+  // constructor(private httpService: HttpService){}
+  // submit(){
+  //     this.httpService.getSum(this.num1, this.num2).subscribe({next:(data:any) => {
+  //         this.sum=data.result; 
+  //         this.done=true;
+  //     }});
+  // }
 
   // users: User[]=[];
       
