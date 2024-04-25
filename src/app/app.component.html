@@ -1,16 +1,68 @@
 
 <p>Hello METANIT.COM</p>
 
+<div>
+    <nav>
+        <a routerLink="">Главная</a> |
+        <a routerLink="/item/5/details">Информация о товаре</a> |
+        <a routerLink="/item/5/stat">Статистика товара</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+
+<!-- <div>
+    <nav>
+        <a routerLink="">Главная</a>
+        <a routerLink="/about">О сайте</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <button (click)="goHome()">На главную</button>
+    <button (click)="goAbout()">О сайте</button>
+</div>
+
 
 <div>
+    <div  class="form-group">
+        <h3>Параметры объекта</h3>
+        <p>
+            <label>Номер модели</label><br>
+            <input type="number" [(ngModel)]="item.id" />
+        <p>
+        <p>
+            <label>Цена</label><br>
+            <input type="number" [(ngModel)]="item.price" />
+        <p>
+        <p>
+            <label>Товар</label><br>
+            <input [(ngModel)]="item.product" />
+        <p>
+        <button (click)="goToItem(item)">Перейти</button>
+    </div>
+    <router-outlet></router-outlet>
+</div> -->
+<!-- <div>
     <nav>
         <a routerLink="" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact:true}">Главная</a>
         <a routerLink="/about" routerLinkActive="active">О сайте</a>
         <a routerLink="/contact" routerLinkActive="active">Contact</a>
+        <a routerLink="/item/5" routerLinkActive="active">Item 5</a>
     </nav>
     <router-outlet></router-outlet>
-</div>
+</div> -->
+
+<!-- <div>
+    <nav>
+        <a routerLink="">Главная</a>
+        <a routerLink="/about">О сайте</a>
+        <a routerLink="/item/5" [queryParams]="{'product':'phone', 'price': 200}">Item 5</a>
+        <a routerLink="/item/8" [queryParams]="{'product':'tablet'}">Item 8</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div> -->
+
+
+
 
 <!-- <div>{{this.httpService.errorMessage}}</div> -->
 <!-- <ul>

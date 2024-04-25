@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { FormsModule, NgModel, NgForm , FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
+import {ActivatedRoute, RouterLink, RouterOutlet, RouterLinkActive, Router } from '@angular/router';
 import {ChildComponent} from './child.component';
 
 import {NgClass} from "@angular/common";
@@ -17,6 +17,13 @@ import {LogService} from "./log.service";
 import { HttpClient, HttpClientModule} from "@angular/common/http";
 import {User} from "./user";
 import { HttpService} from "./http.service";
+
+
+class Item{
+  constructor(public id: number, 
+              public product: string, 
+              public price: number){}
+}
  
 // class Item{
 //   purchase: string;
@@ -57,6 +64,30 @@ import { HttpService} from "./http.service";
 
 export class AppComponent  {
 
+      item: Item = new Item(1, "", 0);
+
+  constructor(private router: Router){}
+    goHome(){
+        this.router.navigate([""]);
+         // переход на корень приложения
+    }
+
+    goAbout(){
+      this.router.navigate(["/about"]);
+    }
+      
+    goToItem(myItem: Item){
+        this.router.navigate(
+            ["/item", myItem.id], 
+            {
+                queryParams:{
+                    "product": myItem.product, 
+                    "price": myItem.price
+                }
+            }
+        );
+    }
+    
   // num1: number = 0;
   // num2: number = 0;
   // sum: number | undefined;
