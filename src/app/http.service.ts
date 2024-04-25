@@ -10,6 +10,10 @@ import { map, catchError } from "rxjs/operators";
 export class HttpService{
   
     constructor(private http: HttpClient){ }
+
+    getUsers(){
+        return this.http.get("assets/users.json");
+    }
       
     // getData(){
     //     return this.http.get("assets/data.json")

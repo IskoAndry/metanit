@@ -4,9 +4,14 @@
 <!-- <input [(ngModel)]="num" name="fact">
     <div>Результат: {{num | format}}</div> -->
 
-    <p>Модель: {{ phone| async }}</p>
-    <button (click)="showPhones()">Посмотреть модели</button>
+  
 
+
+    <ul>
+        @for(user of users | async; track $index){
+            <li>{{user.name}} ({{user.age}})</li>
+        } 
+    </ul>
 <!-- <div>{{myDate | date:"dd/MM/yyyy"}}</div>
 <div>{{welcome | uppercase}}</div>
                <div>{{welcome | lowercase}}</div>

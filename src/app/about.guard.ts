@@ -5,10 +5,10 @@
 //     return confirm("Вы уверены, что хотите перейти?");
 // };
 
-import {inject} from "@angular/core";
-import {AuthService} from "./auth.service";
+// import {inject} from "@angular/core";
+// import {AuthService} from "./auth.service";
  
-export const aboutGuard = () => {
-    const authService = inject(AuthService);    // получаем сервис
-    return authService.isLoggedIn
-};
+// export const aboutGuard = () => {
+//     const authService = inject(AuthService);    // получаем сервис
+//     return authService.isLoggedIn
+// };

@@ -26,11 +26,11 @@ import { Observable, interval } from "rxjs";
 import { map } from "rxjs/operators";
 
 
-class Item{
-  constructor(public id: number, 
-              public product: string, 
-              public price: number){}
-}
+// class Item{
+//   constructor(public id: number, 
+//               public product: string, 
+//               public price: number){}
+// }
  
 // class Item{
 //   purchase: string;
@@ -61,24 +61,24 @@ class Item{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AsyncPipe, FormatPipe, UpperCasePipe, LowerCasePipe, PercentPipe, CurrencyPipe, DatePipe, RouterLink , RouterLinkActive, RouterOutlet, HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  imports: [ HttpClientModule, AsyncPipe, FormatPipe, UpperCasePipe, LowerCasePipe, PercentPipe, CurrencyPipe, DatePipe, RouterLink , RouterLinkActive, RouterOutlet, HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
   providers: [HttpService, DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-
+ 
 })
 
 
-export class AppComponent  {
+export class AppComponent implements OnInit  {
 
-  phones = ["iPhone 15 Pro", "Xiaomi 14 Pro", "Infinix NOTE 30", "Samsung Galaxy A24", "realme C53"];
-      
-    phone: Observable<string>|undefined;
-    constructor() { this.showPhones(); }
-    
-    showPhones() {
-        this.phone = interval(500).pipe(map((i:number)=> this.phones[i]));
-    }
+  users: Observable<Object>|undefined;;
+  constructor(private httpService: HttpService){}
+  ngOnInit(){
+          
+       this.users = this.httpService.getUsers();
+  }
+
+  
 
   // num: number = 15.45;
 
