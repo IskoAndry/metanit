@@ -13,6 +13,8 @@ import {ContactComponent} from "./contact.component";
 import {ItemComponent} from "./item/item.component";
 import { ItemStatComponent }   from "./item.stat.component";
 import { ItemDetailsComponent }   from "./item.details.component";
+import { aboutGuard }   from "./about.guard";
+
 
 // определение дочерних маршрутов
 const itemRoutes: Routes = [
@@ -24,7 +26,7 @@ const itemRoutes: Routes = [
 const appRoutes: Routes =[
   { path: "", component: HomeComponent},
 
-  { path: "about", component: AboutComponent},
+  { path: "about", component: AboutComponent, canActivate: [aboutGuard]},
   { path: "contact", component: ContactComponent },
   { path: "item/:id", component: ItemComponent},
   { path: "item/:id", component: ItemComponent, children: itemRoutes},
