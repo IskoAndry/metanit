@@ -18,6 +18,13 @@ import { HttpClient, HttpClientModule} from "@angular/common/http";
 import {User} from "./user";
 import { HttpService} from "./http.service";
 
+import { DatePipe } from "@angular/common";
+import {UpperCasePipe, LowerCasePipe, PercentPipe, CurrencyPipe } from "@angular/common";
+import { FormatPipe } from "./format.pipe";
+import {AsyncPipe} from "@angular/common";
+import { Observable, interval } from "rxjs";
+import { map } from "rxjs/operators";
+
 
 class Item{
   constructor(public id: number, 
@@ -54,7 +61,7 @@ class Item{
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ RouterLink , RouterLinkActive, RouterOutlet, HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
+  imports: [AsyncPipe, FormatPipe, UpperCasePipe, LowerCasePipe, PercentPipe, CurrencyPipe, DatePipe, RouterLink , RouterLinkActive, RouterOutlet, HttpClientModule, ReactiveFormsModule, WhileDirective, NgSwitch, NgSwitchCase, NgSwitchDefault, NgFor, NgIf, BoldDirective, NgClass, RouterOutlet, FormsModule, ChildComponent,  ],
   providers: [HttpService, DataService, LogService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -64,29 +71,46 @@ class Item{
 
 export class AppComponent  {
 
-      item: Item = new Item(1, "", 0);
-
-  constructor(private router: Router){}
-    goHome(){
-        this.router.navigate([""]);
-         // переход на корень приложения
-    }
-
-    goAbout(){
-      this.router.navigate(["/about"]);
-    }
+  phones = ["iPhone 15 Pro", "Xiaomi 14 Pro", "Infinix NOTE 30", "Samsung Galaxy A24", "realme C53"];
       
-    goToItem(myItem: Item){
-        this.router.navigate(
-            ["/item", myItem.id], 
-            {
-                queryParams:{
-                    "product": myItem.product, 
-                    "price": myItem.price
-                }
-            }
-        );
+    phone: Observable<string>|undefined;
+    constructor() { this.showPhones(); }
+    
+    showPhones() {
+        this.phone = interval(500).pipe(map((i:number)=> this.phones[i]));
     }
+
+  // num: number = 15.45;
+
+  // myDate = Date.now();
+
+  // welcome: string = "Hello World!";
+  // persentage: number = 0.14; 
+
+
+  //     item: Item = new Item(1, "", 0);
+
+  // constructor(private router: Router){}
+  //   goHome(){
+  //       this.router.navigate([""]);
+  //        // переход на корень приложения
+  //   }
+
+  //   goAbout(){
+  //     this.router.navigate(["/about"]);
+  //   }
+      
+  //   goToItem(myItem: Item){
+  //       this.router.navigate(
+  //           ["/item", myItem.id], 
+  //           {
+  //               queryParams:{
+  //                   "product": myItem.product, 
+  //                   "price": myItem.price
+  //               }
+  //           }
+  //       );
+  //   }
     
   // num1: number = 0;
   // num2: number = 0;
